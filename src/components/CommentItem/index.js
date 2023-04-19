@@ -11,7 +11,7 @@ const CommentItem = props => {
   const likeImageUrl = isLiked
     ? 'https://assets.ccbp.in/frontend/react-js/comments-app/liked-img.png'
     : 'https://assets.ccbp.in/frontend/react-js/comments-app/like-img.png'
-  const postedTime = formatDistanceToNow(date)
+  const postedTime = formatDistanceToNow(new Date(date))
 
   const onClickLike = () => {
     const {toggleIsLiked} = props
