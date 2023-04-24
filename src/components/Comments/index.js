@@ -15,11 +15,17 @@ const initialContainerBackgroundClassNames = [
   'light-blue',
 ]
 
+let savedComments = JSON.parse(localStorage.getItem('commentsList')) // Get the comment items from the local storage outside of the class components
+if (savedComments === null) {
+  // We have to handle when comment items didn't exist in the local storage
+  savedComments = []
+}
+
 class Comments extends Component {
   state = {
     nameInput: '',
     commentInput: '',
-    commentsList: [],
+    commentsList: savedComments,
   }
 
   deleteComment = commentId => {
@@ -95,11 +101,7 @@ class Comments extends Component {
   onSave = () => {
     const {commentsList} = this.state
     localStorage.setItem('commentsList', JSON.stringify(commentsList))
-
-    const stringifiedList = localStorage.getItem('commentsList')
-    const parsedCommentsList = JSON.parse(stringifiedList)
-
-    this.setState({commentsList: parsedCommentsList})
+    console.log(commentsList)
   }
 
   render() {
